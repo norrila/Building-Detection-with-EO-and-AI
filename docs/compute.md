@@ -67,6 +67,57 @@ year of development. Sizes in decimal gigabytes (GB).
 Raw input is over 95 % of the volume. Radar archives and very high-resolution reference surveys dominate;
 the satellite optical data the method runs on is small.
 
+### Planning figures for your own municipality
+
+Data falls into two kinds, and they scale differently:
+
+- **Area data** — aerial photography, LiDAR, commercial satellite imagery ordered to an outline, and
+  results. Its volume grows with the area covered, so it is given per km².
+- **Scene data** — free satellite archives (Sentinel-1, Sentinel-2, NISAR). They are delivered as whole
+  scenes tens to hundreds of kilometres across, so a small municipality downloads as much as a large one.
+  Its volume depends on how many acquisitions are kept, not on the municipality's area — unless the scenes
+  are cut to the municipality after processing, which shrinks them to almost nothing.
+
+**Area data**, measured on our deliveries:
+
+| Data | Per km² | Measured on | Scales with |
+|---|---|---|---|
+| Aerial photography, 8 cm, colour + near-infrared, uncompressed GeoTIFF | **0.78 GB** per survey | 2024 survey, 942 km² (0.44 colour, 0.34 near-infrared) | area; about 1/resolution² |
+| Aerial photography, 8 cm, colour, JPEG-compressed | **0.08 GB** per survey | 2018 survey, 579 km² | area |
+| LiDAR, compressed (COPC / LAZ) | **~6.5 bytes per point**: 0.13 GB at 20 points/m² | 2024 survey, 21.4 billion points, 138 GB | area × point density |
+| LiDAR, uncompressed (LAS) | **~22 bytes per point**: 0.45 GB at 20 points/m² | 2024 survey, same points | area × point density |
+| PlanetScope, 3 m, 8 bands | **1.6 MB** per date | 2026 delivery, 331 km² | area × number of dates |
+| PlanetScope, 3 m, 4 bands | **0.9 MB** per date | 2018 delivery, 146 km² | area × number of dates |
+| Results (features, models, detections) | **~0.06 GB** | first development year, 1,170 km² | area; grows with the number of experiments |
+
+Compression is the largest single lever: the same kind of survey takes 0.08 or 0.78 GB per km² depending
+on how it is delivered, and LiDAR delivered in two formats is stored twice.
+
+**Scene data**, per acquisition as downloaded (independent of the municipality's area):
+
+| Data | Per acquisition | Acquisitions a year (typical) |
+|---|---|---|
+| Sentinel-1 GRD (C-band radar, both polarisations) | ~0.9 GB per scene | one orbit track: 30–60 |
+| Sentinel-2 L2A (optical) | ~15–18 GB per month of usable dates | depends on cloud cover |
+| NISAR RSLC (raw radar, full resolution) | ~14 GB per frame | per track: ~30 (12-day repeat) |
+| NISAR GSLC (geocoded, full resolution) | ~13 GB per frame | as above |
+| NISAR GUNW (interferogram) | ~2.5 GB per pair | as above |
+| NISAR GCOV (geocoded backscatter) | ~1.7 GB per frame | as above |
+
+Cut to the municipality after processing, scene data costs very little: a 10 m raster of one band in
+32-bit floating point is 10,000 pixels × 4 bytes = **40 kB per km² per date** (calculated, not measured).
+Even at several bands and dozens of dates a year, that is well under 1 GB per km² a year.
+
+**A rule of thumb** for a municipality of *A* km²:
+
+    storage ≈ A × (aerial survey + LiDAR survey + results)          area data, per survey cycle
+            + A × PlanetScope per date × dates kept                 if commercial imagery is used
+            + scene archive (fixed, set by which products are kept)
+
+Example, *A* = 100 km², compressed surveys (0.08 + 0.13 GB/km²), weekly 8-band PlanetScope: 21 GB per
+survey cycle, 8 GB a year of PlanetScope, ~6 GB of results — plus the scene archive, which at
+30–200 GB a year for Sentinel data alone is the largest item unless it is cut to the municipality.
+
 ### What continuous operation adds
 
 An **estimate**, not a measurement: one municipality the size of the test site, analysed continuously
@@ -86,8 +137,9 @@ through the year. Each row starts from the measured volume above.
 
 Three years of operation add roughly **3–15 TB** to today's 2.7 TB, so **6–18 TB** in total, depending
 mostly on how much raw radar is kept. With headroom for reprocessing and a second study area, plan for
-**10–25 TB of usable storage**, and the same again for backup. A second municipality adds less than the first: the satellite data scales with area, and the
-reference surveys depend on what that municipality flies.
+**10–25 TB of usable storage**, and the same again for backup. A second municipality adds less than the
+first: the scene archives can be shared between neighbouring municipalities, and the reference surveys
+depend on what that municipality flies.
 
 ## Lessons learned from the first year
 
