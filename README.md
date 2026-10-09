@@ -1,3 +1,5 @@
+This project is financed by [Rymdstyrelsen](https://www.rymdstyrelsen.se/rymddata/utlysningar/stangda-utlysningar/klimat-och-miljo-2025--myndigheternas-klimat--miljo--och-hallbarhetsarbete-genom-anvandning-av-satellitdata/).
+
 # Building Detection with EO and AI
 
 **Towards smarter permitting and urban planning.** An open-source framework for finding new buildings
@@ -77,7 +79,8 @@ archipelago. Sundbyberg municipality tests how well the method carries over to a
 | Spatial Impact | Project leader and coordination |
 
 Funded by the Swedish National Space Agency (*Rymdstyrelsen*), call *Klimat och miljö 2025*, November 2025 to
-October 2027.
+October 2027. The approved project is described on the agency's website:
+[Building Detection with Earth Observation data and AI: Towards Smarter Permitting and Urban Planning](https://en.rymdstyrelsen.se/rymddata/beviljade-bidrag/klimat-och-miljo-2025/building-detection-with-earth-observation-data-and-ai-towards-smarter-permitting-and-urban-planning/).
 
 <!-- TODO: the acknowledgement wording the funder requires, if any. -->
 
