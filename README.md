@@ -62,10 +62,10 @@ archipelago. Sundbyberg municipality tests how well the method carries over to a
 
 | Page | What it covers |
 |---|---|
+| [Compute and storage](docs/compute.md) | The computing set-up the project needs and has acquired, data volumes per km², lessons learned |
 | [Method](docs/method.md) | How places are flagged and checked |
 | [Data](docs/data.md) | Which satellite and reference data are used |
 | [Results](docs/results.md) | What has been measured, and how it is counted |
-| [Compute and storage](docs/compute.md) | The computing set-up the project needs and has acquired, data volumes per km², lessons learned |
 
 ## Partners and funding
 
