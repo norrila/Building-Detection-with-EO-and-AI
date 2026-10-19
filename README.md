@@ -67,6 +67,7 @@ archipelago. Sundbyberg municipality tests how well the method carries over to a
 | [Compute and storage](docs/compute.md) | The computing set-up the project needs and has acquired, data volumes per km², lessons learned |
 | [Method](docs/method.md) | How places are flagged and checked |
 | [Data](docs/data.md) | Which satellite and reference data are used |
+| [Data accounts](docs/accounts.md) | How to get the Planet API key and the Copernicus and Earthdata accounts the downloads need |
 | [Results](docs/results.md) | What has been measured, and how it is counted |
 
 ## Partners and funding
